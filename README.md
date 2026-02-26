@@ -11,10 +11,13 @@ Furthermore, data scientists state that temporal variations in LULC provide info
 ### Problem Statement
 
 Despite the increase in need for LULC classification models, many of the maps and digital databases that are currently in use were not created with the diverse needs of users in mind. Although it is typically overlooked, one of the primary causes is the kind of classification that is applied to fundamental data like land cover and land use. While there are numerous worldwide categorization schemes, there isn't a single internationally recognized system for classifying land use or cover. Here’s why researchers are focused on preparing a more accurate LULC classification model-
-* 1. Diverse User Requirements
+
+- 1. Diverse User Requirements
 Information on land cover and land use is needed by a variety of stakeholders, including researchers, legislators, urban planners, and environmentalists. Databases and maps that are currently in use might not always meet these various needs[2].
+
 - 2. Classification and Legend Issues
 The classification scheme and legend chosen to characterize land use and cover can have a big influence on how relevant and comparable geographical data are. Cross-regional or cross-project data comparison can be hampered by inconsistent classification schemes.
+
 - 3. Project-Oriented Approaches
 A large number of the land cover and land use classifications that are currently in use were created for particular projects or industries, which restricts their general application. This may result in a lack of uniformity and fragmentation in the representation of land cover and land use data.
 
@@ -29,7 +32,7 @@ The pre-trained model used is ResNet50. ResNet-50 is a convolutional neural netw
 
 Deep neural networks are difficult to train due to the problem of vanishing or exploding gradients (repeated multiplication making the gradient infinitely small). ResNet bypasses one or more levels in order to overcome this by creating shortcut connections, as seen below, that link activation from an earlier layer to a later one.[6].
 
-- 1. Fine-tuning the ResNet50 Model
+#### 1. Fine-tuning the ResNet50 Model
 Fine-tuning a pretrained model refers to the process of taking a neural network model that has been trained on a large dataset (typically a general dataset like ImageNet) and further training it on a new, smaller dataset specific to a particular task or domain. The goal of fine-tuning is to take advantage of the knowledge that the pretrained model (which was trained on a sizable dataset) has acquired and modify it so that it can function well on a new task or dataset. Below is the sequence of fine-tuning done for the ResNet50 model
 
 - i.Creating Custom dataset classes
@@ -41,7 +44,7 @@ During model training, data augmentation involves randomly applying image change
 Image normalization is a preprocessing method used to standardize an image's pixel values in computer vision and image processing. By ensuring that the input data (image pixels) have a constant scale and distribution, picture normalization aims to enhance the stability and performance of machine learning models.
 
 
-##### 2. Generating Land Use and Land Cover Map for an Area
+#### 2. Generating Land Use and Land Cover Map for an Area
 
 Sentinel-2 satellite image for a region of interest is downloaded through Google Earth Engine and a trained CNN model(ResNet50) is applied on the image to generate a land use and land cover map.
 - i. Generating sentinel-2 Satellite images
