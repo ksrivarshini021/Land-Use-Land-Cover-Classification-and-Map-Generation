@@ -52,10 +52,13 @@ Image normalization is a preprocessing method used to standardize an image's pix
 
 Sentinel-2 satellite image for a region of interest is downloaded through Google Earth Engine and a trained CNN model(ResNet50) is applied on the image to generate a land use and land cover map.
 - **Generating sentinel-2 Satellite images**
+  
 Sentinel-2 is a Copernicus Program Earth observation project that produces global multispectral imagery at 10 m resolution every 10 days from 2015 to the present[1].A function is written to use the Python Earth Engine API to create a Sentinel-2 image from Google Earth. An aggregator is selected for a set of photographs taken over time rather than a single image on a specific date in order to reduce cloud cover.
 - **Visualization of the Sentinel-2A Image**
+  
 Once the API  call is done and the image is received , a boundary is made to differentiate states(of U.S.A) and a portion of a state- California is selected as a region to generate the LULC map for. After the region is downloaded, it is visualized as a satellite raster image using the raster library. Pixels are arranged in a grid to form raster data. Digital elevation maps, maps of nocturnal luminosity, and multispectral satellite photos are a few examples. For example, red, green, and blue values in satellite pictures; night light intensity in NTL maps; and height in elevation maps—each pixel denotes a value or class. GeoTIFFs (.tiff) are frequently used to store raster data.
 - **Generating & Visualizing 64x64 px GeoJSON Tiles**
+  
 Since the deep learning model trained on RGB dataset was trained on 64*64 pixel Sentinel-2 image patches, the generated Sentinel-2 image from google earth engine need to be broken down as well into smaller 64*64 patch tiles. The is done by creating a function that generates a grid of 64*64 tiles using 'Rasterio Window Utilities'. Pixels are arranged in a grid to form raster data. The land use and land cover classification map is generated using the trained model. The RGB Dataset consists of 10 different LULC classes which will be explained further in the data section. Later, an interactive LULC map is generated using the Folium library after loading the resulting predictions made earlier.
 
 By combining all the above steps, the finely-tuned ResNet-50 model is leveraged to create accurate and detailed LULC maps for various environmental and land management applications. The key is to adapt the deep learning model to the specific characteristics and requirements of the target area and land cover classification task.
