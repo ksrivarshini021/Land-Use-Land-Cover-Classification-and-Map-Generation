@@ -11,7 +11,7 @@ Furthermore, data scientists state that temporal variations in LULC provide info
 ### Problem Statement
 
 Despite the increase in need for LULC classification models, many of the maps and digital databases that are currently in use were not created with the diverse needs of users in mind. Although it is typically overlooked, one of the primary causes is the kind of classification that is applied to fundamental data like land cover and land use. While there are numerous worldwide categorization schemes, there isn't a single internationally recognized system for classifying land use or cover. Here’s why researchers are focused on preparing a more accurate LULC classification model-
-- 1. Diverse User Requirements
+* 1. Diverse User Requirements
 Information on land cover and land use is needed by a variety of stakeholders, including researchers, legislators, urban planners, and environmentalists. Databases and maps that are currently in use might not always meet these various needs[2].
 - 2. Classification and Legend Issues
 The classification scheme and legend chosen to characterize land use and cover can have a big influence on how relevant and comparable geographical data are. Cross-regional or cross-project data comparison can be hampered by inconsistent classification schemes.
