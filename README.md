@@ -35,12 +35,12 @@ Deep neural networks are difficult to train due to the problem of vanishing or e
 #### 1. Fine-tuning the ResNet50 Model
 Fine-tuning a pretrained model refers to the process of taking a neural network model that has been trained on a large dataset (typically a general dataset like ImageNet) and further training it on a new, smaller dataset specific to a particular task or domain. The goal of fine-tuning is to take advantage of the knowledge that the pretrained model (which was trained on a sizable dataset) has acquired and modify it so that it can function well on a new task or dataset. Below is the sequence of fine-tuning done for the ResNet50 model
 
-- <u>Creating Custom dataset classes<u>
+- Creating Custom dataset classes
 By Creating custom dataset classes In Pytorch the Dataset class allows you to define a custom class to load the input and target for a dataset. this capability is used to load the input in the form of RGB satellite images along with their labels and later apply any kind of transformations
-- ii. <u>Data Augmentation<u>
+- ii. Data Augmentation
 During model training, data augmentation involves randomly applying image changes, such as cropping, flips (horizontal and vertical), and other adjustments, to the input images. The neural network can more effectively generalize to the unknown test dataset thanks to these perturbations, which also lessen the network's overfitting to the training dataset.
 
-- iii. <u>Image Normalization<u>
+- iii. Image Normalization
 Image normalization is a preprocessing method used to standardize an image's pixel values in computer vision and image processing. By ensuring that the input data (image pixels) have a constant scale and distribution, picture normalization aims to enhance the stability and performance of machine learning models.
 
 
