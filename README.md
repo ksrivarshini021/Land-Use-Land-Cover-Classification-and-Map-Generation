@@ -11,14 +11,14 @@ Furthermore, data scientists state that temporal variations in LULC provide info
 ### Problem Statement
 
 Despite the increase in need for LULC classification models, many of the maps and digital databases that are currently in use were not created with the diverse needs of users in mind. Although it is typically overlooked, one of the primary causes is the kind of classification that is applied to fundamental data like land cover and land use. While there are numerous worldwide categorization schemes, there isn't a single internationally recognized system for classifying land use or cover. Here’s why researchers are focused on preparing a more accurate LULC classification model-
-##### 1. Diverse User Requirements
+- 1. Diverse User Requirements
 Information on land cover and land use is needed by a variety of stakeholders, including researchers, legislators, urban planners, and environmentalists. Databases and maps that are currently in use might not always meet these various needs[2].
-##### 2. Classification and Legend Issues
+- 2. Classification and Legend Issues
 The classification scheme and legend chosen to characterize land use and cover can have a big influence on how relevant and comparable geographical data are. Cross-regional or cross-project data comparison can be hampered by inconsistent classification schemes.
-##### 3. Project-Oriented Approaches
+- 3. Project-Oriented Approaches
 A large number of the land cover and land use classifications that are currently in use were created for particular projects or industries, which restricts their general application. This may result in a lack of uniformity and fragmentation in the representation of land cover and land use data.
 
-##### 4. Lack of International Standardization
+- 4. Lack of International Standardization
 There is no internationally recognized standard for classifying land use or cover, despite efforts to create a number of classification schemes across the globe. This lack of uniformity may make it more difficult for nations and regions to share data and interact with one another.[5]
 
 ### Methodology 
@@ -29,26 +29,26 @@ The pre-trained model used is ResNet50. ResNet-50 is a convolutional neural netw
 
 Deep neural networks are difficult to train due to the problem of vanishing or exploding gradients (repeated multiplication making the gradient infinitely small). ResNet bypasses one or more levels in order to overcome this by creating shortcut connections, as seen below, that link activation from an earlier layer to a later one.[6].
 
-##### 1. Fine-tuning the ResNet50 Model
+- 1. Fine-tuning the ResNet50 Model
 Fine-tuning a pretrained model refers to the process of taking a neural network model that has been trained on a large dataset (typically a general dataset like ImageNet) and further training it on a new, smaller dataset specific to a particular task or domain. The goal of fine-tuning is to take advantage of the knowledge that the pretrained model (which was trained on a sizable dataset) has acquired and modify it so that it can function well on a new task or dataset. Below is the sequence of fine-tuning done for the ResNet50 model
 
-###### i.Creating Custom dataset classes
+- i.Creating Custom dataset classes
 By Creating custom dataset classes In Pytorch the Dataset class allows you to define a custom class to load the input and target for a dataset. this capability is used to load the input in the form of RGB satellite images along with their labels and later apply any kind of transformations
-###### ii. Data Augmentation
+- ii. Data Augmentation
 During model training, data augmentation involves randomly applying image changes, such as cropping, flips (horizontal and vertical), and other adjustments, to the input images. The neural network can more effectively generalize to the unknown test dataset thanks to these perturbations, which also lessen the network's overfitting to the training dataset.
 
-###### iii. Image Normalization
+- iii. Image Normalization
 Image normalization is a preprocessing method used to standardize an image's pixel values in computer vision and image processing. By ensuring that the input data (image pixels) have a constant scale and distribution, picture normalization aims to enhance the stability and performance of machine learning models.
 
 
 ##### 2. Generating Land Use and Land Cover Map for an Area
 
 Sentinel-2 satellite image for a region of interest is downloaded through Google Earth Engine and a trained CNN model(ResNet50) is applied on the image to generate a land use and land cover map.
-###### i. Generating sentinel-2 Satellite images
+- i. Generating sentinel-2 Satellite images
 Sentinel-2 is a Copernicus Program Earth observation project that produces global multispectral imagery at 10 m resolution every 10 days from 2015 to the present[1].A function is written to use the Python Earth Engine API to create a Sentinel-2 image from Google Earth. An aggregator is selected for a set of photographs taken over time rather than a single image on a specific date in order to reduce cloud cover.
-###### ii. Visualization of the Sentinel-2A Image
+- ii. Visualization of the Sentinel-2A Image
 Once the API  call is done and the image is received , a boundary is made to differentiate states(of U.S.A) and a portion of a state- California is selected as a region to generate the LULC map for. After the region is downloaded, it is visualized as a satellite raster image using the raster library. Pixels are arranged in a grid to form raster data. Digital elevation maps, maps of nocturnal luminosity, and multispectral satellite photos are a few examples. For example, red, green, and blue values in satellite pictures; night light intensity in NTL maps; and height in elevation maps—each pixel denotes a value or class. GeoTIFFs (.tiff) are frequently used to store raster data.
-###### iii. Generating & Visualizing 64x64 px GeoJSON Tiles
+- iii. Generating & Visualizing 64x64 px GeoJSON Tiles
 Since the deep learning model trained on RGB dataset was trained on 64*64 pixel Sentinel-2 image patches, the generated Sentinel-2 image from google earth engine need to be broken down as well into smaller 64*64 patch tiles. The is done by creating a function that generates a grid of 64*64 tiles using 'Rasterio Window Utilities'. Pixels are arranged in a grid to form raster data. The land use and land cover classification map is generated using the trained model. The RGB Dataset consists of 10 different LULC classes which will be explained further in the data section. Later, an interactive LULC map is generated using the Folium library after loading the resulting predictions made earlier.
 
 By combining all the above steps, the finely-tuned ResNet-50 model is leveraged to create accurate and detailed LULC maps for various environmental and land management applications. The key is to adapt the deep learning model to the specific characteristics and requirements of the target area and land cover classification task.
